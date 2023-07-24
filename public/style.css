@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Victor+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+*{
+    font-family: "Inter", 'sans-serif';
+    font-size: large;
+}
+
+body{
+    background-color: antiquewhite;
+    /* background-color: rgb(209, 195, 228); */
+    /* background-color: rgb(83, 79, 79); */
+    /* color: rgb(51, 50, 51); */
+    color: black;
+}
+
+.correct{
+    color: green;
+}
+
+.wrong {
+    color: red
+}
+
+.current-word{
+    font-size: x-large;
+}
+
+.time{
+    width: 120px;
+    height: 70px;
+    margin: 40px;
+}
+
+.score{
+    width: 100px;
+    height: 60px;
+    margin: 30px;
+    padding: 10px 0 10px 0;
+    text-align: center;
+}
+
+a.restart-button{
+    text-decoration: none;
+    color: black;
+}
+
+div.restart-button {
+    width: 100px;
+    height: 60px;
+    margin: 30px;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+div.restart-button:hover{
+    background-color: rgb(221, 188, 145);
+}
