@@ -3,13 +3,11 @@ const timerBox = document.querySelector(".time");
 const restartButton = document.querySelector("a.restart-button");
 const scoreBox = document.querySelector(".score");
 
+let spanObject, currentTime, elapsedTimeSeconds, lastCorrectUserIndex, buffer;
 let userString = "";
-let spanObject, currentTime, elapsedTimeSeconds;
 let charArray = [];
 let originalIndex = 0;
 let index = 0;
-let buffer;
-let lastCorrectUserIndex;
 let userIndex = 0;
 let wrongChars = 0;
 let currentWord = 0;
