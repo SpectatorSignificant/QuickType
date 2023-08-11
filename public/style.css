@@ -17,6 +17,58 @@ body{
     color: black;
 }
 
+.overlay{
+    position: absolute;
+    top: 150px;
+    background-color: #DDBC91;
+    box-shadow: 4px 4px 20px 5px;
+    /* opacity: 0.3; */
+    margin: 0 25% auto 25%;
+    width: 50%;
+    height: 50%;
+    z-index: 1000;
+}
+
+.overlay-header{
+    text-align: center;
+    font-size: larger;
+}
+
+.txt-settings{
+    font-size: larger;
+    font-weight:400;
+}
+
+#btn-settings-close{
+    display: inline;
+    float: right;
+}
+
+
+.logo{
+    display: inline-block;
+}
+
+.btn-login {
+    display: inline;
+    float: right;
+    width: 100px;
+    height: 60px;
+}
+
+.wrapper{
+    /* align-items: center; */
+    margin: 70px 0 0 0;
+    text-align: center;
+}
+
+.words {
+    /* text-shadow: 0 0 8px black; */
+    width: 800px;
+    /* color: transparent; */
+    margin: auto;
+}
+
 .correct{
     color: green;
 }
@@ -32,25 +84,24 @@ body{
 .time{
     width: 120px;
     height: 70px;
-    margin: 40px;
 }
 
 .score{
     width: 100px;
     height: 60px;
-    margin: 30px;
     padding: 10px 0 10px 0;
     text-align: center;
 }
 
-a.restart-button{
+a{
+    display: inline-block;
     text-decoration: none;
     color: black;
 }
 
-div.restart-button {
+a.restart-button {
     width: 100px;
-    height: 60px;
+    height: 28px;
     margin: 30px;
     padding: 10px 0 10px 0;
     text-align: center;
@@ -58,6 +109,17 @@ div.restart-button {
     border-radius: 5px;
 }
 
-div.restart-button:hover{
-    background-color: rgb(221, 188, 145);
+a:hover{
+    background-color: #DDBC91;
+}
+
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    background-color: antiquewhite;
+    color: black;
+}
+
+.btn:hover{
+    background-color: #DDBC91;
 }

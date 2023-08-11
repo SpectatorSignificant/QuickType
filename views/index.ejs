@@ -4,18 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>QuickType</title>
 </head>
 <body>
-    <div class="time"></div>
-
+    <div class="overlay" hidden>
+        <div class="overlay-header">
+            <span class="txt-settings">Settings</span>
+            <button id="btn-settings-close" class="btn" type="button"><i class="fa-solid fa-xmark btn-close"></i></button>
+        </div>
+        <div class="settings">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque obcaecati ut voluptates, nostrum totam ipsam aperiam, nobis cumque, est eum ex. Ea tenetur autem ad mollitia dolor excepturi eveniet ipsum possimus quam nemo! Libero id est ipsam consectetur architecto sint culpa perspiciatis eum, commodi excepturi dolore cupiditate, harum inventore suscipit!
+        </div>    
+    </div>
+    <a href="/" class="logo" tabindex="-1"><img src="./logo.svg" alt="logo" class="logo"></a>
+    <button type="button" class="btn-login btn" tabindex="-1">Login</button>
     <div class="wrapper">
         <div class="words"></div>
     </div>
+    <div class="time"></div>
     <div class="score"></div>
-    <a href="/test" class = "restart-button">
-        <div class="restart-button">Restart</div>
-    </a>
+    <div class="panel">
+        <a href="/test" class="restart-button btn" tabindex="1">
+            Restart
+        </a>
+        <button id="btn-settings" class="btn" type="button"><i class="fa-solid fa-sliders"></i></button>
+    </div>
+    
 
     <script>
         let randomWords = '<%= randomWords %>';
