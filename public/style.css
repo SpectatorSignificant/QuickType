@@ -44,7 +44,6 @@ body{
     float: right;
 }
 
-
 .logo{
     display: inline-block;
 }
@@ -107,10 +106,6 @@ a.restart-button {
     text-align: center;
     border: solid 2px black;
     border-radius: 5px;
-}
-
-a:hover{
-    background-color: #DDBC91;
 }
 
 .btn{

@@ -3,12 +3,14 @@ const app = express()
 import dotenv from "dotenv";
 import ejs from "ejs";
 import {generate} from "random-words";
+import { createUser, updateUser, findUser, searchUsers } from "./mongoose.js"
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(express.json());
 
 let randomWords;
+let username = "user1";
 
 function randomizeArray(array) {
     var swapIndex;
@@ -28,7 +30,20 @@ app.get("/test", (req, res) => {
     randomWords = generate({exactly: 4, minLength: 6, maxLength: 6}).concat(generate({exactly: 16, minLength: 2, maxLength: 5}));
     randomWords = randomWords.concat(generate({exactly: 1, minLength: 7, maxLength: 8}));
     randomizeArray(randomWords);
-    res.render("index.ejs", {randomWords})
+    res.render("test.ejs", {randomWords})
+})
+
+app.get("/score", async (req, res) => {
+    const userScores = (await findUser(username)).score
+    const userTimes = (await findUser(username)).time
+    res.render("score.ejs", { userScores, userTimes })
+})
+
+app.post("/test", (req, res) => {
+    console.log(req.body);
+    updateUser(username, { $push: { score: req.body.score } })
+    updateUser(username, { $push: { time: req.body.time } })
+    res.json({ url: "/score"})
 })
 
 app.listen(process.env.PORT || 3001, () => {

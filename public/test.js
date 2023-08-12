@@ -19,9 +19,22 @@ let currentWord = 0;
 let badEntry = false;
 let spaceWasPressed = false;
 let startTime;
+let gameMode = "expert";
 
 originalString = randomWords.replace(/,/g, " ");
+originalString = originalString + " "
 console.log('length of original string:', originalString.length);
+
+async function postData(url = "", data = {}) {
+    const response = await fetch(url, {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+    })
+    return response.json(); 
+  }
 
 function indexBuffer(index){
     for (var i = index; i < originalString.length; i++){
@@ -76,8 +89,8 @@ settingsCloseButton.onclick = (e) => {
     console.log(wordsBox.style)
 }
 
-document.addEventListener("keydown", (e) => {
-    if (e.key.length == 1 || e.key == "Backspace"){
+document.addEventListener("keydown", async (e) => {
+    if (gameOver == false && (e.key.length == 1 || e.key == "Backspace")){
         if (userIndex == 1){
             startTime = Date.now();
         } 
@@ -85,7 +98,7 @@ document.addEventListener("keydown", (e) => {
         if (originalIndex < originalString.length && e.key == originalString[originalIndex].toLocaleLowerCase() && wrongChars == 0){
             if (e.key == " " && spaceWasPressed == false){
                 spaceWasPressed = true;
-                e.key = "_";
+                // if (gameMode)
             }
             else if (e.key != " ") spaceWasPressed = false; 
             userString += e.key;
@@ -94,6 +107,7 @@ document.addEventListener("keydown", (e) => {
             lastCorrectOriginalIndex = originalIndex;
             userIndex += 1;
             originalIndex += 1;
+
         } else if (e.key != "Backspace" && e.key != " "){
             spanObject = document.createElement("span");
             spanObject.textContent = e.key;
@@ -102,6 +116,7 @@ document.addEventListener("keydown", (e) => {
             userString += e.key;
             userIndex += 1;
             wrongChars += 1;
+
         } else if (e.key == "Backspace" && wrongChars > 0){
             // console.log(charArray[userIndex - 1].classList, charArray[userIndex - 1].classList.length);
             // if (charArray[userIndex - 1].classList.includes("wrong")){
@@ -110,6 +125,7 @@ document.addEventListener("keydown", (e) => {
             userIndex -= 1;
             wrongChars -= 1;
             // }
+
         } else if (e.key == "Backspace" && spaceWasPressed){
             spaceWasPressed = false;
             userString = userString.slice(0, userString.length - 1);
@@ -121,6 +137,9 @@ document.addEventListener("keydown", (e) => {
             // console.log(wrongChars, originalIndex, userIndex);
             
         } else if (e.key == " " && spaceWasPressed == false){
+            if (gameMode == "expert"){
+                gameOver = true;
+            }
             buffer = indexBuffer(originalIndex);
             originalIndex += buffer;
             userIndex += buffer //+ wrongChars;
@@ -128,13 +147,18 @@ document.addEventListener("keydown", (e) => {
             wrongChars = 0;
             userString += e.key;
             spaceWasPressed = true;
+            console.log(originalIndex)
             // console.log(buffer, originalIndex, userIndex, wrongChars);
         }
         
-        if (originalIndex >= originalString.length) {
+        if (originalIndex >= originalString.length || gameOver) {
+            gameOver = true;
+            location.href = ((await postData("/test", { score , time: new Date() })).url)
+            console.log(gameOver)
             console.log("Over", { score })
             scoreBox.innerText = score;
             clearInterval(interval)
+        
         }
     }
     
