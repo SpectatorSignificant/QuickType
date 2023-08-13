@@ -1,8 +1,6 @@
-const canvas = document.querySelector("canvas");
 const graphDiv = document.querySelector(".graph")
 
-const ctx = canvas.getContext("2d");
-console.log({userScores, userTimes});
+console.log({userTimes});
 
 userScores = JSON.parse(userScores);
 userTimes = JSON.parse(userTimes);
@@ -10,16 +8,20 @@ userTimes = userTimes.map((element) => {
     // console.log(element)
     // const date = new Date(element)
     // console.log(date);
-    return `${element.getDate}-${element.getMonth}-${element.getFullYear}`;
+    console.log(element, typeof(element))
+    element = new Date(element)
+    // console.log(`${element.getFullYear}-${element.getMonth}-${element.getDate}`);
+    // return new Date(`${element.getFullYear}-${element.getMonth}-${element.getDate}`);
+    return element.toLocaleString()
 })
 console.log(userTimes)
-var data = [{
-  x: userScores,
-  y: userTimes,
+const data = [{
+  x: userTimes,
+  y: userScores,
   type: 'scatter'
 }];
 
-var layout = {
+const layout = {
   title: 'Your Typing History',
   xaxis: {
     title: 'Day',
@@ -29,6 +31,8 @@ var layout = {
   yaxis: {
     title: 'Speed (WPM)',
     showline: false
-  }
+  },
+  width: 900,
+  height: 500
 };
 Plotly.newPlot(graphDiv, data, layout);

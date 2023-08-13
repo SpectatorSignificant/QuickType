@@ -11,15 +11,17 @@ let userString = "";
 let charArray = [];
 let originalIndex = 0;
 let index = 0;
+let rawScore = 0
 let score;
 let gameOver = false;
 let userIndex = 0;
 let wrongChars = 0;
+let totalWrongChars = 0;
 let currentWord = 0;
 let badEntry = false;
 let spaceWasPressed = false;
 let startTime;
-let gameMode = "expert";
+let gameMode = "normal";
 
 originalString = randomWords.replace(/,/g, " ");
 originalString = originalString + " "
@@ -144,6 +146,7 @@ document.addEventListener("keydown", async (e) => {
             originalIndex += buffer;
             userIndex += buffer //+ wrongChars;
             // userIndex += wrongChars;
+            totalWrongChars += wrongChars + buffer;
             wrongChars = 0;
             userString += e.key;
             spaceWasPressed = true;
@@ -153,9 +156,10 @@ document.addEventListener("keydown", async (e) => {
         
         if (originalIndex >= originalString.length || gameOver) {
             gameOver = true;
-            location.href = ((await postData("/test", { score , time: new Date() })).url)
+            location.href = ((await postData("/test", { score , time: Date.now(), rawScore })).url)
             console.log(gameOver)
             console.log("Over", { score })
+            calculateScore()
             scoreBox.innerText = score;
             clearInterval(interval)
         
@@ -186,7 +190,16 @@ const interval = setInterval(() => {
     if (!isNaN(elapsedTimeSeconds)){
         timerBox.innerText = (elapsedTimeSeconds)
     }
-    score = 60*(originalString.length/5)/elapsedTimeSeconds
+    console.log(calculateScore())
     
 }, 50);
+
+function calculateScore(){
+    console.log({totalWrongChars})
+    console.log({wrongChars})
+    rawScore = 60*(userString.length/5)/elapsedTimeSeconds
+    score = rawScore - 60*(totalWrongChars/5)/elapsedTimeSeconds
+    console.log(score, rawScore)
+    return score
+}
 

@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Victor+Mono:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
-*{
+:not(.heading){
     font-family: "Inter", 'sans-serif';
     font-size: large;
 }
@@ -44,6 +44,17 @@ body{
     float: right;
 }
 
+.graph-container{
+    display: flex;
+    text-align: center;
+}
+
+/* .graph{
+    display: inline;
+    margin: 0 auto 0 auto;
+    align-self: center;
+} */
+
 .logo{
     display: inline-block;
 }
@@ -81,6 +92,10 @@ body{
 }
 
 .time{
+    position: relative;
+    left: 50%;
+    top: 30px;
+    align-self: center;
     width: 120px;
     height: 70px;
 }
@@ -91,6 +106,10 @@ body{
     padding: 10px 0 10px 0;
     text-align: center;
 }
+
+/* .heading{
+    font-size: larger;
+} */
 
 a{
     display: inline-block;

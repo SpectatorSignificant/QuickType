@@ -14,10 +14,22 @@
 <body>
     
     <a href="/" class="logo" tabindex="-1"><img src="./logo.svg" alt="logo" class="logo"></a>
-    <canvas id="chart"></canvas>
-    <div class="graph"></div>
+    <!-- <canvas id="chart"></canvas> -->
+
+    <h2 class="heading">Score <%= Math.round(score*100)/100 %></h2>
+    <h4></h4>
+
+    <h3 class="heading">Raw Score <%= Math.round(rawScore*100)/100 %></h3>
+    <h4></h4>
+
+    <div class="graph-container">
+        <div class="graph"></div>
+    </div>
+    
     
     <script >
+        let rawScore = '<%= rawScore %>'
+        let score = '<%= score %>'
         let userScores = '<%- JSON.stringify(userScores) %>'
         let userTimes = '<%- JSON.stringify(userTimes) %>'
     </script>

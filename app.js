@@ -9,7 +9,7 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(express.json());
 
-let randomWords;
+let randomWords, score, rawScore;
 let username = "user1";
 
 function randomizeArray(array) {
@@ -36,11 +36,13 @@ app.get("/test", (req, res) => {
 app.get("/score", async (req, res) => {
     const userScores = (await findUser(username)).score
     const userTimes = (await findUser(username)).time
-    res.render("score.ejs", { userScores, userTimes })
+    res.render("score.ejs", { userScores, userTimes, rawScore, score})
 })
 
 app.post("/test", (req, res) => {
     console.log(req.body);
+    rawScore = req.body.rawScore;
+    score = req.body.score;
     updateUser(username, { $push: { score: req.body.score } })
     updateUser(username, { $push: { time: req.body.time } })
     res.json({ url: "/score"})
